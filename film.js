@@ -104,3 +104,168 @@ const filmy = [
 		premiera: '2022-12-24',
 	},
 ]
+
+const bonus = filmy.push(
+	{
+		id: 'YES-Man',
+		nazev: 'YES Man',
+		plakat: {
+	
+			url: 'https://m.media-amazon.com/images/M/MV5BMzBmZTMzYmItNzhhMC00M2FkLWIxMGEtMjIxMjAwNmQ2ZmM4XkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_.jpg',
+			sirka: 430,
+			vyska: 635,
+	
+		},
+	
+		ochutnavka:'Romantická komedie s Jimem Carreym',
+		popis: 'Carl Allen je zatrpklý bankovní úředník, který se dosud nevyrovnal s odchodem manželky. Pokud to jde, zapírá se před kamarády, večery tráví u videa, je protivný a téměř na všechno odpovídá slůvkem ne. Jednoho dne však narazí na bývalého kolegu, který mu nadšeně vypráví o svém novém životě, který začal, když se přidal k „Yes Manům“. Carl se vydá na jejich seminář, kde ho Nick představí charismatickému vůdci Terrenci Bundleyovi.',
+		premiera: '2008-01-07',
+	
+	}
+	);
+
+const main = document.querySelector('.container-lg.mt-5')
+const movieID = window.location.hash.slice(1)
+const movie = filmy.find(item => movieID === item.id)
+
+main.innerHTML = '';
+main.innerHTML += `<div class="container-lg mt-5">
+			<div class="card mb-3" id="detail-filmu">
+				<div class="row g-0">
+					<div class="col-md-5">
+						<img
+							src= '${movie.plakat.url}'
+							alt="plakát"
+							class="img-fluid rounded-start"
+							width="663"
+							height="909"
+						/>
+					</div>
+					<div class="col-md-7">
+						<div class="card-body">
+							<h5 class="card-title">'${movie.nazev}'</h5>
+							<p class="card-text">'${movie.popis}'</p>
+							<p class="card-text">
+								<small class="text-muted" id="premiera"
+									>Premiéra <strong>24. prosince 2022</strong>, což je za 24
+									dní.</small
+								>
+							</p>
+							<h6>Hodnocení</h6>
+							<div class="stars">
+								<button
+									class="far fa-star button-star"
+									data-mdb-toggle="tooltip"
+									title="Nic moc"
+								>
+									1
+								</button>
+								<button
+									class="far fa-star button-star"
+									data-mdb-toggle="tooltip"
+									title="Ucházející"
+								>
+									2
+								</button>
+								<button
+									class="far fa-star button-star"
+									data-mdb-toggle="tooltip"
+									title="Dobrý"
+								>
+									3
+								</button>
+								<button
+									class="far fa-star button-star"
+									data-mdb-toggle="tooltip"
+									title="Skvělý"
+								>
+									4
+								</button>
+								<button
+									class="far fa-star button-star"
+									data-mdb-toggle="tooltip"
+									title="Úžasný"
+								>
+									5
+								</button>
+							</div>
+
+							<h6 class="mt-4">Poznámka</h6>
+							<form id="note-form">
+								<div class="row">
+									<div class="col-md-6 col-lg-7 col-xl-8 mb-2">
+										<div class="form-outline">
+											<textarea
+												class="form-control"
+												id="message-input"
+												rows="4"
+											></textarea>
+											<label class="form-label" for="message-input"
+												>Text poznámky</label
+											>
+										</div>
+									</div>
+									<div class="col-md-6 col-lg-5 col-xl-4">
+										<div class="form-check d-flex justify-content-center mb-2">
+											<input
+												class="form-check-input me-2 mb-2"
+												type="checkbox"
+												value=""
+												id="terms-checkbox"
+											/>
+											<label class="form-check-label" for="terms-checkbox">
+												Souhlasím se všeobecnými podmínky užívání.
+											</label>
+										</div>
+										<button type="submit" class="btn btn-primary btn-block">
+											Uložit
+										</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+`
+
+document.querySelector('#note-form').addEventListener('submit', (e)=> {
+e.preventDefault()
+
+	const formText = document.querySelector('#message-input')
+    const valueCheckBox = document.querySelector('#terms-checkbox')
+
+	let textValid = true;
+	let checkValid = true;
+
+	if(formText.value.length === 0){
+		
+		formText.classList.add('is-invalid')
+		formText.focus();
+		textValid = false;
+
+	} else{
+		formText.classList.remove('is-invalid')
+		textValid = true;
+	}
+
+    if(!valueCheckBox.checked){
+		valueCheckBox.classList.add('is-invalid')
+		checkValid = false;
+
+	} else{
+		valueCheckBox.classList.remove('is-invalid')
+		checkValid = true;
+	}
+	
+	if(textValid && checkValid){
+		const form = document.querySelector('#note-form');
+		form.innerHTML = `<p class="card-text">'${formText.value}'</p>`
+	}
+});
+
+
+
+
+

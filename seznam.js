@@ -103,4 +103,60 @@ const filmy = [
 			'Na zámek v podhůří Krkonoš přijíždí jeho nový majitel Štěpán se svojí snoubenkou, krásnou komtesou Blankou, a mladším bratrem Adamem. Cestou kočár nešťastně srazí kolemjdoucí dívku, Adam jí pomůže a ona se do něj zamiluje. Na zámku Adam objeví starou vlašskou knihu, která by měla obsahovat cestu k pokladům. Tajemné značky vlašské knihy však nedokáže vyluštit ani národopisec Jiráček, který v kraji sbírá pověsti a nevychází z údivu nad tím, že zdejší lidé stále věří v Krakonoše. Na zámku se objeví záhadný cizinec a nabídne Štěpánovi, že jej k pokladu za určitých podmínek dovede. Výprava do hor může začít. Naplní se Liduščina láska k Adamovi? Jakou záhadu skrývá starý obraz na zámku Hůrka a co strašlivého se v horách kdysi odehrálo? A kdo je vlastně Krakonoš a jaké je jeho největší tajemství? (csfd.cz, Česká televize)',
 		premiera: '2022-12-24',
 	},
+
+	
+	
 ]
+
+const List = document.getElementById('seznam-filmu');
+
+
+List.innerHTML = '';
+
+
+
+/*vlastný film - BONUS*/
+
+const bonus = filmy.push(
+{
+	id: 'YES-Man',
+	nazev: 'YES Man',
+	plakat: {
+
+		url: 'https://m.media-amazon.com/images/M/MV5BMzBmZTMzYmItNzhhMC00M2FkLWIxMGEtMjIxMjAwNmQ2ZmM4XkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_.jpg',
+		sirka: 430,
+		vyska: 635,
+
+	},
+
+	ochutnavka:'Romantická komedie s Jimem Carreym',
+	popis: 'Carl Allen je zatrpklý bankovní úředník, který se dosud nevyrovnal s odchodem manželky. Pokud to jde, zapírá se před kamarády, večery tráví u videa, je protivný a téměř na všechno odpovídá slůvkem ne. Jednoho dne však narazí na bývalého kolegu, který mu nadšeně vypráví o svém novém životě, který začal, když se přidal k „Yes Manům“. Carl se vydá na jejich seminář, kde ho Nick představí charismatickému vůdci Terrenci Bundleyovi.',
+	premiera: '2008-01-07',
+
+}
+);
+
+/*nestačí iba film.plakat, ale film.plakat.url!!!*/
+
+filmy.forEach((film) => {
+	List.innerHTML +=  `<div class="col">
+	<div class="card">
+	   <img
+		  src='${film.plakat.url}'
+		  width='780'
+		  height='520'
+		  class="card-img-top"
+		  alt='${film.nazev}'
+	   />
+	   <div class="card-body">
+		  <h5 class="card-title">${film.nazev}</h5>
+		  <p class="card-text">${film.ochutnavka}</p>
+		  <a href= "film.html#${film.id}" class="btn btn-primary">Přehrát</a>
+	   </div>
+	</div>
+ </div>`;
+
+
+});
+
+
